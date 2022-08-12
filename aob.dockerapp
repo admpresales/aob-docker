@@ -1,0 +1,201 @@
+# This section contains your application metadata.
+# Version of the application
+version: "<version>"
+# Name of the application
+name: aos
+# A short description of the application
+description: "Advantage Online Banking"
+# Namespace to use when pushing to a registry. This is typically your Hub username.
+namespace: "admpresales"
+# List of application maitainers with name and email for each
+maintainers:
+  - name: Jason Hrabi
+    email: jason.hrabi@microfocus.com
+# Specify false here if your application doesn't support Swarm or Kubernetes
+targets:
+  swarm: false
+  kubernetes: false
+
+---
+# This section contains the Compose file that describes your application services.
+
+services:
+  db-postgres:
+    image: 'advantageonlineshopping/aob-postgresql-db:${AOB_TAG}'
+    container_name: aob-db-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+
+  aob-config:
+    image: 'advantageonlineshopping/aob-config-service:${AOB_TAG}'
+    container_name: aob-config
+    ports:
+      - '8888:8888'
+    depends_on:
+      - db-postgres
+
+  aob-discovery:
+    image: 'advantageonlineshopping/aob-eureka-service:${AOB_TAG}'
+    container_name: aob-discovery
+    ports:
+      - '8761:8761'
+    depends_on:
+      - aob-config
+
+  aob-gateway:
+    image: 'advantageonlineshopping/aob-gateway-service:${AOB_TAG}'
+    container_name: aob-gateway
+    depends_on:
+      - aob-discovery
+    ports:
+      - '8280:8080'
+      - '443:443'
+    volumes:
+      - /etc/letsencrypt/ci.advantageonlinebanking.com:/etc/certificates
+    env_file:
+      - .env
+  user-service:
+    image: 'advantageonlineshopping/aob-user-service:${AOB_TAG}'
+    container_name: aob-user-service
+    depends_on:
+      - aob-discovery
+
+  bank-account-service:
+    image: 'advantageonlineshopping/aob-bank-account-service:${AOB_TAG}'
+    container_name: aob-bank-account-service
+    depends_on:
+      - aob-discovery
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+
+  bank-card-service:
+    image: 'advantageonlineshopping/aob-bank-cards-service:${AOB_TAG}'
+    container_name: aob-bank-cards-service
+    depends_on:
+      - aob-discovery
+
+  forecast-service:
+    image: 'advantageonlineshopping/aob-forecast-service:${AOB_TAG}'
+    container_name: aob-forecast-service
+    depends_on:
+      - aob-discovery
+
+  # loan-calc-service:
+  #   image: 'advantageonlineshopping/aob-loan-calc-service:${AOB_TAG}'
+  #   container_name: aob-loan-calc-service
+  #   ports:
+  #     - '34568-34570:34568-34570'
+  #     - '23:34571'
+  #   depends_on:
+  #     - discovery
+
+  webapp:
+    image: 'advantageonlineshopping/aob-web-app:${AOB_TAG}'
+    container_name: aob-web-app
+    expose:
+      - '80'
+    ports:
+      - 8082:80
+
+  mysql:
+    image: advantageonlineshopping/aob-mysql-db:${AOB_TAG}
+    container_name: aob-mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: 'no'
+    volumes:
+      - mysql-db:/var/lib/mysql
+      - mysql-db:/var/log/mysql
+    expose:
+      - '3306'
+    ports:
+      - 3306:3306
+  currency-service-api:
+    image: advantageonlineshopping/aob-currencies-service:${AOB_TAG}
+    container_name: aob-currency-service-api
+    depends_on:
+      - mysql
+    expose:
+      - '3000'
+    ports:
+      - 3000:3000
+    environment:
+      DBDATABASE: currency
+      PORT: 3000
+
+  management-console-api:
+    image: advantageonlineshopping/aob-management-console-api:${AOB_TAG}
+    container_name: aob-management-console-api
+    depends_on:
+      - mysql
+    expose:
+      - '3001'
+    ports:
+      - 3001:3001
+    environment:
+      DBDATABASE: management
+      PORT: 3001
+
+  management-console-app:
+    image: advantageonlineshopping/aob-management-console-app:${AOB_TAG}
+    container_name: aob-management-console-app
+    expose:
+      - '80'
+    ports:
+      - 8081:80
+  stocks-trading-service:
+    image: advantageonlineshopping/aob-stocks-trading-service:${AOB_TAG}
+    container_name: aob-stocks-trading-service
+    expose:
+      - '3002'
+    ports:
+      - 3002:3002
+    environment:
+      PORT: 3002
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_HOST: db-postgres
+      TYPEORM_DATABASE: stocks_trading_service
+      TYPEORM_USERNAME: postgres
+      TYPEORM_PASSWORD: postgres
+      TYPEORM_PORT: 5432
+      TYPEORM_LOGGING: "true"
+      TYPEORM_SYNCHRONIZE: "true"
+      TYPEORM_ENTITIES: ./dist/src/modules/**/*.entity.js
+      TYPEORM_MIGRATIONS: ./dist/migrations/*.js
+      NO_PROXY: '*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com'
+
+networks:
+   demo-net:
+     external: true
+
+
+---
+# This section contains the default values for your application settings.
+AOB_TAG: "<tag>"
+SECURE_GATEWAY=false
+GATEWAY_PORT=8080
+EUREKA_HOST=aob-discovery
+EUREKA_PORT=8761
+REACT_APP_API_URL=http://nimbusserver.aos.com:8280/api
+API_URL=http://nimbusserver.aos.com:8280/api/management
+GATEWAY_URL=http://nimbusserver.aos.com:8280/api
+CONFIG_REPO_URI=/root/config
+CONFIG_REPO_FILE_SYSTEM=file:///configservice/microservices
+CONFIG_SERVICE_ACTIVE_PROFILE=native
+KEYSTORE=/etc/certificates/keystore.p12
+KEYSTORE_ALIAS=advantagebank
+KEYSTORE_PASSWORD=password
+MYSQL_ROOT_PASSWORD=pass
+DBHOST=mysql
+DBPORT=3306
+DBUSER=root
+DBPASSWORD=pass
+MANAGEMENT_CONSOLE_URL=https://management-ci.advantageonlinebanking.com
+DAILY_RATES_ENDPOINT=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+NINETY_DAYS_RATES_ENDPOINT=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml
+FULL_HISTORY_RATES_ENDPOINT=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml
+JWT_SECRET=advantageusersjwtsecret
+PROD_MODE=false
+POPULATE_STOCKS_DB=false
