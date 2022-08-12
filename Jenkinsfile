@@ -76,8 +76,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-nimbusbuildserver', passwordVariable: 'HUB_PASS', usernameVariable: 'HUB_USER')]) {
                     sh 'docker login --username "$HUB_USER" --password-stdin <<< $HUB_PASS'
-                    sh "sed -i -e \"s,<version>,${TAG}-dev,g\" aos.dockerapp"
-                    sh "sed -i -e \"s,<tag>,${TAG},g\" aos.dockerapp"
+                    sh "sed -i -e \"s,<version>,${TAG}-dev,g\" ${IMAGE_NAME}.dockerapp"
+                    sh "sed -i -e \"s,<tag>,${TAG},g\" ${IMAGE_NAME}.dockerapp"
                     sh "docker-app validate ${IMAGE_NAME}.dockerapp"
                     sh "docker-app push ${IMAGE_NAME}.dockerapp"
                     sh "nimbusapp ${IMAGE}:${TAG}-dev render"
