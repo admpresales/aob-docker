@@ -349,7 +349,7 @@ services:
       - 3000:3000
     environment:
       - DBDATABASE: "currency"
-      - PORT: 3000
+      - PORT: "3000"
       - GATEWAY_PORT
       - EUREKA_HOST
       - EUREKA_PORT
