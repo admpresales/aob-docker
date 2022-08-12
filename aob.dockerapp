@@ -21,7 +21,7 @@ targets:
 version: '3.5'
 services:
   db-postgres:
-    image: 'advantageonlineshopping/aob-postgresql-db:${AOB_TAG}'
+    image: advantageonlineshopping/aob-postgresql-db:${AOB_TAG}
     container_name: aob-db-postgres
     environment:
       - POSTGRES_USER=postgres
