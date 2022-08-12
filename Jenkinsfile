@@ -8,8 +8,8 @@ pipeline {
     environment {
         IMAGE_NAME = "aob"
         IMAGE = "admpresales/$IMAGE_NAME"
-        MS_URL = 'https://outlook.office.com/webhook/1a000ca5-6a80-417d-90df-0d78169ae130@856b813c-16e5-49a5-85ec-6f081e13b527/JenkinsCI/9d88add532b341108db0c9ee70ff06c8/f31d390a-dfae-4481-970b-5fa560e59e5c'
-        MS_URL_RELEASE = 'https://microfocusinternational.webhook.office.com/webhookb2/1a000ca5-6a80-417d-90df-0d78169ae130@856b813c-16e5-49a5-85ec-6f081e13b527/JenkinsCI/4d6f926b97f443de94c37f77b0f55d2c/f31d390a-dfae-4481-970b-5fa560e59e5c'
+        MS_URL = credentials('teams-webhook-url')
+        MS_URL_RELEASE = credentials('teams-webhook-release')
     }
 
     parameters {
