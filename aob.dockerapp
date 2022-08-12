@@ -2,7 +2,7 @@
 # Version of the application
 version: "<version>"
 # Name of the application
-name: aos
+name: aob
 # A short description of the application
 description: "Advantage Online Banking"
 # Namespace to use when pushing to a registry. This is typically your Hub username.
