@@ -18,7 +18,7 @@ targets:
 
 ---
 # This section contains the Compose file that describes your application services.
-
+version: '3.5'
 services:
   db-postgres:
     image: 'advantageonlineshopping/aob-postgresql-db:${AOB_TAG}'
