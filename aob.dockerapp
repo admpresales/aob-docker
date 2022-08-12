@@ -429,7 +429,7 @@ services:
       - 3002:3002
     environment:
       - PORT: "3002"
-      - TYPEORM_CONNECTION: postgres
+      - TYPEORM_CONNECTION: "postgres"
       - TYPEORM_HOST: "db-postgres"
       - TYPEORM_DATABASE: "stocks_trading_service"
       - TYPEORM_USERNAME: "postgres"
@@ -439,7 +439,7 @@ services:
       - TYPEORM_SYNCHRONIZE: "true"
       - TYPEORM_ENTITIES: "./dist/src/modules/**/*.entity.js"
       - TYPEORM_MIGRATIONS: "./dist/migrations/*.js"
-      - NO_PROXY: '*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com'
+      - NO_PROXY: "'*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com'"
       - SECURE_GATEWAY
       - GATEWAY_PORT
       - EUREKA_HOST
