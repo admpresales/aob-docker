@@ -421,6 +421,7 @@ services:
       - '80'
     ports:
       - 8081:80
+
   stocks-trading-service:
     image: advantageonlineshopping/aob-stocks-trading-service:${AOB_TAG}
     container_name: aob-stocks-trading-service
