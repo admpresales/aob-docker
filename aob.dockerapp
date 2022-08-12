@@ -53,10 +53,7 @@ services:
     ports:
       - '8280:8080'
       - '443:443'
-    volumes:
-      - /etc/letsencrypt/ci.advantageonlinebanking.com:/etc/certificates
-    env_file:
-      - .env
+
   user-service:
     image: 'advantageonlineshopping/aob-user-service:${AOB_TAG}'
     container_name: aob-user-service
@@ -105,9 +102,6 @@ services:
     container_name: aob-mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: 'no'
-    volumes:
-      - mysql-db:/var/lib/mysql
-      - mysql-db:/var/log/mysql
     expose:
       - '3306'
     ports:
