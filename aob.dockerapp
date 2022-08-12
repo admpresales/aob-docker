@@ -385,8 +385,8 @@ services:
     ports:
       - 3001:3001
     environment:
-      - DBDATABASE: management
-      - PORT: 3001
+      - DBDATABASE: "management"
+      - PORT: "3001"
       - SECURE_GATEWAY
       - GATEWAY_PORT
       - EUREKA_HOST
@@ -428,7 +428,7 @@ services:
     ports:
       - 3002:3002
     environment:
-      - PORT: 3002
+      - PORT: "3002"
       - TYPEORM_CONNECTION: postgres
       - TYPEORM_HOST: db-postgres
       - TYPEORM_DATABASE: stocks_trading_service
