@@ -86,6 +86,17 @@ pipeline {
             }
         }
 
+        stage('Pull Images') {
+            when {
+                expression { !params.PUSH && !TAG.equals("latest") }
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: '1028616a-1e44-4439-90cf-e0af1be398cb', passwordVariable: 'HUB_PASS', usernameVariable: 'HUB_USER')]) {
+                    sh label: "Docker Login", script: 'docker login --username "$HUB_USER" --password-stdin <<< $HUB_PASS'
+                    sh label: "Pull AOB Images", script: "nimbusapp ${IMAGE}:${TAG}-dev pull"
+                }
+            }
+        }
         stage('Push') {
             when {
                 expression { params.PUSH && !TAG.equals("latest") }
