@@ -26,6 +26,31 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
     ports:
       - '5432:5432'
 
@@ -34,6 +59,32 @@ services:
     container_name: aob-config
     ports:
       - '8888:8888'
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
     depends_on:
       - db-postgres
 
@@ -44,6 +95,32 @@ services:
       - '8761:8761'
     depends_on:
       - aob-config
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   aob-gateway:
     image: 'advantageonlineshopping/aob-gateway-service:${AOB_TAG}'
@@ -53,12 +130,64 @@ services:
     ports:
       - '8280:8080'
       - '443:443'
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   user-service:
     image: 'advantageonlineshopping/aob-user-service:${AOB_TAG}'
     container_name: aob-user-service
     depends_on:
       - aob-discovery
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   bank-account-service:
     image: 'advantageonlineshopping/aob-bank-account-service:${AOB_TAG}'
@@ -67,18 +196,95 @@ services:
       - aob-discovery
     environment:
       - SPRING_PROFILES_ACTIVE=default
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   bank-card-service:
     image: 'advantageonlineshopping/aob-bank-cards-service:${AOB_TAG}'
     container_name: aob-bank-cards-service
     depends_on:
       - aob-discovery
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   forecast-service:
     image: 'advantageonlineshopping/aob-forecast-service:${AOB_TAG}'
     container_name: aob-forecast-service
     depends_on:
       - aob-discovery
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   # loan-calc-service:
   #   image: 'advantageonlineshopping/aob-loan-calc-service:${AOB_TAG}'
@@ -96,6 +302,32 @@ services:
       - '80'
     ports:
       - 8082:80
+    environment:
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   mysql:
     image: advantageonlineshopping/aob-mysql-db:${AOB_TAG}
@@ -116,8 +348,32 @@ services:
     ports:
       - 3000:3000
     environment:
-      DBDATABASE: currency
-      PORT: 3000
+      - DBDATABASE: currency
+      - PORT: 3000
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   management-console-api:
     image: advantageonlineshopping/aob-management-console-api:${AOB_TAG}
@@ -129,8 +385,33 @@ services:
     ports:
       - 3001:3001
     environment:
-      DBDATABASE: management
-      PORT: 3001
+      - DBDATABASE: management
+      - PORT: 3001
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
   management-console-app:
     image: advantageonlineshopping/aob-management-console-app:${AOB_TAG}
@@ -147,18 +428,43 @@ services:
     ports:
       - 3002:3002
     environment:
-      PORT: 3002
-      TYPEORM_CONNECTION: postgres
-      TYPEORM_HOST: db-postgres
-      TYPEORM_DATABASE: stocks_trading_service
-      TYPEORM_USERNAME: postgres
-      TYPEORM_PASSWORD: postgres
-      TYPEORM_PORT: 5432
-      TYPEORM_LOGGING: "true"
-      TYPEORM_SYNCHRONIZE: "true"
-      TYPEORM_ENTITIES: ./dist/src/modules/**/*.entity.js
-      TYPEORM_MIGRATIONS: ./dist/migrations/*.js
-      NO_PROXY: '*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com'
+      - PORT: 3002
+      - TYPEORM_CONNECTION: postgres
+      - TYPEORM_HOST: db-postgres
+      - TYPEORM_DATABASE: stocks_trading_service
+      - TYPEORM_USERNAME: postgres
+      - TYPEORM_PASSWORD: postgres
+      - TYPEORM_PORT: 5432
+      - TYPEORM_LOGGING: "true"
+      - TYPEORM_SYNCHRONIZE: "true"
+      - TYPEORM_ENTITIES: ./dist/src/modules/**/*.entity.js
+      - TYPEORM_MIGRATIONS: ./dist/migrations/*.js
+      - NO_PROXY: '*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com'
+      - SECURE_GATEWAY
+      - GATEWAY_PORT
+      - EUREKA_HOST
+      - EUREKA_PORT
+      - REACT_APP_API_URL
+      - API_URL
+      - GATEWAY_URL
+      - CONFIG_REPO_URI
+      - CONFIG_REPO_FILE_SYSTEM
+      - CONFIG_SERVICE_ACTIVE_PROFILE
+      - KEYSTORE
+      - KEYSTORE_ALIAS
+      - KEYSTORE_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - DBHOST
+      - DBPORT
+      - DBUSER
+      - DBPASSWORD
+      - MANAGEMENT_CONSOLE_URL
+      - DAILY_RATES_ENDPOINT
+      - NINETY_DAYS_RATES_ENDPOINT
+      - FULL_HISTORY_RATES_ENDPOINT
+      - JWT_SECRET
+      - PROD_MODE
+      - POPULATE_STOCKS_DB
 
 networks:
    demo-net:
