@@ -338,6 +338,7 @@ services:
       - '3306'
     ports:
       - 3306:3306
+
   currency-service-api:
     image: advantageonlineshopping/aob-currencies-service:${AOB_TAG}
     container_name: aob-currency-service-api
