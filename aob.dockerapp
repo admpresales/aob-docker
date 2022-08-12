@@ -24,3 +24,28 @@ version: '3.5'
 ---
 # This section contains the default values for your application settings.
 AOB_TAG: "<tag>"
+SECURE_GATEWAY=false
+GATEWAY_PORT=8080
+EUREKA_HOST=aob-discovery
+EUREKA_PORT=8761
+REACT_APP_API_URL="http://nimbusserver.aos.com:8280/api"
+API_URL="http://nimbusserver.aos.com:8280/api/management"
+GATEWAY_URL="http://nimbusserver.aos.com:8280/api"
+CONFIG_REPO_URI=/root/config
+CONFIG_REPO_FILE_SYSTEM="file:///configservice/microservices"
+CONFIG_SERVICE_ACTIVE_PROFILE=native
+KEYSTORE=/etc/certificates/keystore.p12
+KEYSTORE_ALIAS=advantagebank
+KEYSTORE_PASSWORD=password
+MYSQL_ROOT_PASSWORD=pass
+DBHOST=mysql
+DBPORT=3306
+DBUSER=root
+DBPASSWORD=pass
+MANAGEMENT_CONSOLE_URL="https://management-ci.advantageonlinebanking.com"
+DAILY_RATES_ENDPOINT="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
+NINETY_DAYS_RATES_ENDPOINT="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml"
+FULL_HISTORY_RATES_ENDPOINT="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml"
+JWT_SECRET=advantageusersjwtsecret
+PROD_MODE=false
+POPULATE_STOCKS_DB=false
