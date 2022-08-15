@@ -131,6 +131,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   aob-gateway:
     image: 'advantageonlineshopping/aob-gateway-service:${AOB_TAG}'
