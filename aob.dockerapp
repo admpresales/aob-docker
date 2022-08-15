@@ -53,6 +53,11 @@ services:
       - POPULATE_STOCKS_DB
     ports:
       - '5432:5432'
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   aob-config:
     image: 'advantageonlineshopping/aob-config-service:${AOB_TAG}'
@@ -87,6 +92,11 @@ services:
       - POPULATE_STOCKS_DB
     depends_on:
       - db-postgres
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   aob-discovery:
     image: 'advantageonlineshopping/aob-eureka-service:${AOB_TAG}'
@@ -156,6 +166,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   user-service:
     image: 'advantageonlineshopping/aob-user-service:${AOB_TAG}'
@@ -188,6 +203,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   bank-account-service:
     image: 'advantageonlineshopping/aob-bank-account-service:${AOB_TAG}'
@@ -221,6 +241,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   bank-card-service:
     image: 'advantageonlineshopping/aob-bank-cards-service:${AOB_TAG}'
@@ -253,6 +278,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   forecast-service:
     image: 'advantageonlineshopping/aob-forecast-service:${AOB_TAG}'
@@ -285,6 +315,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   # loan-calc-service:
   #   image: 'advantageonlineshopping/aob-loan-calc-service:${AOB_TAG}'
@@ -328,6 +363,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   mysql:
     image: advantageonlineshopping/aob-mysql-db:${AOB_TAG}
@@ -338,6 +378,11 @@ services:
       - '3306'
     ports:
       - 3306:3306
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   currency-service-api:
     image: advantageonlineshopping/aob-currencies-service:${AOB_TAG}
@@ -375,6 +420,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   management-console-api:
     image: advantageonlineshopping/aob-management-console-api:${AOB_TAG}
@@ -413,6 +463,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
   management-console-app:
     image: advantageonlineshopping/aob-management-console-app:${AOB_TAG}
@@ -466,6 +521,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
 
 networks:
    demo-net:
