@@ -24,8 +24,8 @@ services:
     image: 'advantageonlineshopping/aob-postgresql-db:${AOB_TAG}'
     container_name: aob-db-postgres
     environment:
-      - POSTGRES_USER="postgres"
-      - POSTGRES_PASSWORD="postgres"
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
       - SECURE_GATEWAY
       - GATEWAY_PORT
       - EUREKA_HOST
@@ -195,7 +195,7 @@ services:
     depends_on:
       - aob-discovery
     environment:
-      - SPRING_PROFILES_ACTIVE="default"
+      - SPRING_PROFILES_ACTIVE=default
       - SECURE_GATEWAY
       - GATEWAY_PORT
       - EUREKA_HOST
@@ -349,8 +349,8 @@ services:
     ports:
       - 3000:3000
     environment:
-      - DBDATABASE="currency"
-      - PORT="3000"
+      - DBDATABASE=currency
+      - PORT=3000
       - GATEWAY_PORT
       - EUREKA_HOST
       - EUREKA_PORT
@@ -386,8 +386,8 @@ services:
     ports:
       - 3001:3001
     environment:
-      - DBDATABASE="management"
-      - PORT="3001"
+      - DBDATABASE=management
+      - PORT=3001
       - SECURE_GATEWAY
       - GATEWAY_PORT
       - EUREKA_HOST
@@ -429,18 +429,18 @@ services:
     ports:
       - 3002:3002
     environment:
-      - PORT="3002"
-      - TYPEORM_CONNECTION="postgres"
-      - TYPEORM_HOST="db-postgres"
-      - TYPEORM_DATABASE="stocks_trading_service"
-      - TYPEORM_USERNAME="postgres"
-      - TYPEORM_PASSWORD="postgres"
-      - TYPEORM_PORT="5432"
-      - TYPEORM_LOGGING="true"
-      - TYPEORM_SYNCHRONIZE="true"
-      - TYPEORM_ENTITIES="./dist/src/modules/**/*.entity.js"
-      - TYPEORM_MIGRATIONS="./dist/migrations/*.js"
-      - NO_PROXY='*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com'
+      - PORT=3002
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_HOST=db-postgres
+      - TYPEORM_DATABASE=stocks_trading_service
+      - TYPEORM_USERNAME=postgres
+      - TYPEORM_PASSWORD=postgres
+      - TYPEORM_PORT=5432
+      - TYPEORM_LOGGING=true
+      - TYPEORM_SYNCHRONIZE=true
+      - TYPEORM_ENTITIES=./dist/src/modules/**/*.entity.js
+      - TYPEORM_MIGRATIONS=./dist/migrations/*.js
+      - NO_PROXY=*db-postgres*,aob-discovery:8761,localhost,127.0.0.1,ci.advantageonlinebanking.com
       - SECURE_GATEWAY
       - GATEWAY_PORT
       - EUREKA_HOST
