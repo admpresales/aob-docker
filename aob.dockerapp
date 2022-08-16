@@ -355,7 +355,6 @@ services:
       - MYSQL_ROOT_PASSWORD
       - DBHOST
       - DBPORT
-      - DBUSER
       - DBPASSWORD
       - MANAGEMENT_CONSOLE_URL
       - DAILY_RATES_ENDPOINT
