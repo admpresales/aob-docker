@@ -339,30 +339,8 @@ services:
     ports:
       - 3306:3306
     environment:
-      - SECURE_GATEWAY
-      - GATEWAY_PORT
-      - EUREKA_HOST
-      - EUREKA_PORT
-      - REACT_APP_API_URL
-      - API_URL
-      - GATEWAY_URL
-      - CONFIG_REPO_URI
-      - CONFIG_REPO_FILE_SYSTEM
-      - CONFIG_SERVICE_ACTIVE_PROFILE
-      - KEYSTORE
-      - KEYSTORE_ALIAS
-      - KEYSTORE_PASSWORD
       - MYSQL_ROOT_PASSWORD
-      - DBHOST
-      - DBPORT
-      - DBPASSWORD
-      - MANAGEMENT_CONSOLE_URL
-      - DAILY_RATES_ENDPOINT
-      - NINETY_DAYS_RATES_ENDPOINT
-      - FULL_HISTORY_RATES_ENDPOINT
-      - JWT_SECRET
-      - PROD_MODE
-      - POPULATE_STOCKS_DB
+
 
   currency-service-api:
     image: advantageonlineshopping/aob-currencies-service:${AOB_TAG}
