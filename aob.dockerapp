@@ -330,7 +330,7 @@ services:
       - POPULATE_STOCKS_DB
 
   mysql:
-    image: advantageonlineshopping/aob-mysql-db:${AOB_TAG}
+    image: advantageonlineshopping/aob-mysql-db:${AOB_TAG}_root_fix
     container_name: aob-mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: 'no'
