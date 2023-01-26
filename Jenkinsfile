@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     if (params.TAG == '')  {
-                        if (BRANCH_NAME == "master") {
+                        if (BRANCH_NAME == "main") {
                             TAG="latest"
                         }
                         else {
@@ -144,7 +144,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'nimbusbuildserver-git', passwordVariable: 'GITHUB_PASS', usernameVariable: 'GITHUB_USER')]) {
                     sh label: "Create GitHub Release", script: """
                         BRANCH=${TAG}
-                        PR_URL="\$(gh pr create --title \${BRANCH} --body \${BRANCH} -B master -H \$BRANCH | tail -n 1)"
+                        PR_URL="\$(gh pr create --title \${BRANCH} --body \${BRANCH} -B main -H \$BRANCH | tail -n 1)"
                         gh pr merge \$PR_URL -m
                         gh release create \$BRANCH -t \$BRANCH -n \$BRANCH
                         
