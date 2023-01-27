@@ -21,6 +21,7 @@ targets:
 version: '3.5'
 services:
   db-postgres:
+    build: .
     image: '${REPO_NAME}/aob-postgresql-db:${AOB_TAG}'
     container_name: aob-db-postgres
     environment:
@@ -53,8 +54,11 @@ services:
       - POPULATE_STOCKS_DB
     ports:
       - '5432:5432'
+    networks:
+        demo-net:
 
   aob-config:
+    build: .
     image: '${REPO_NAME}/aob-config-service:${AOB_TAG}'
     container_name: aob-config
     ports:
@@ -87,8 +91,11 @@ services:
       - POPULATE_STOCKS_DB
     depends_on:
       - db-postgres
+    networks:
+        demo-net:
 
   aob-discovery:
+    build: .
     image: '${REPO_NAME}/aob-eureka-service:${AOB_TAG}'
     container_name: aob-discovery
     ports:
@@ -121,8 +128,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   aob-gateway:
+    build: .
     image: '${REPO_NAME}/aob-gateway-service:${AOB_TAG}'
     container_name: aob-gateway
     depends_on:
@@ -156,8 +166,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   user-service:
+    build: .
     image: '${REPO_NAME}/aob-user-service:${AOB_TAG}'
     container_name: aob-user-service
     depends_on:
@@ -188,8 +201,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   bank-account-service:
+    build: .
     image: '${REPO_NAME}/aob-bank-account-service:${AOB_TAG}'
     container_name: aob-bank-account-service
     depends_on:
@@ -221,8 +237,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   bank-card-service:
+    build: .
     image: '${REPO_NAME}/aob-bank-cards-service:${AOB_TAG}'
     container_name: aob-bank-cards-service
     depends_on:
@@ -253,8 +272,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   forecast-service:
+    build: .
     image: '${REPO_NAME}/aob-forecast-service:${AOB_TAG}'
     container_name: aob-forecast-service
     depends_on:
@@ -285,6 +307,8 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   # loan-calc-service:
   #   image: '${REPO_NAME}/aob-loan-calc-service:${AOB_TAG}'
@@ -294,8 +318,11 @@ services:
   #     - '23:34571'
   #   depends_on:
   #     - discovery
+    networks:
+        demo-net:
 
   webapp:
+    build: .
     image: '${REPO_NAME}/aob-web-app:${AOB_TAG}'
     container_name: aob-web-app
     expose:
@@ -328,6 +355,8 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   mysql:
     image: ${REPO_NAME}/aob-mysql-db:${AOB_TAG}_root_fix
@@ -340,9 +369,12 @@ services:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD
+    networks:
+        demo-net:
 
 
   currency-service-api:
+    build: .
     image: ${REPO_NAME}/aob-currencies-service:${AOB_TAG}
     container_name: aob-currency-service-api
     depends_on:
@@ -378,8 +410,11 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   management-console-api:
+    build: .
     image: ${REPO_NAME}/aob-management-console-api:${AOB_TAG}
     container_name: aob-management-console-api
     depends_on:
@@ -416,15 +451,22 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
 
   management-console-app:
+    build: .
     image: ${REPO_NAME}/aob-management-console-app:${AOB_TAG}
     container_name: aob-management-console-app
     expose:
       - '80'
     ports:
       - 8281:80
+    networks:
+        demo-net:
+
   stocks-trading-service:
+    build: .
     image: ${REPO_NAME}/aob-stocks-trading-service:${AOB_TAG}
     container_name: aob-stocks-trading-service
     expose:
@@ -469,6 +511,13 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    networks:
+        demo-net:
+
+
+networks:
+   demo-net:
+     external: true
 
 
 ---
