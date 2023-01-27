@@ -96,12 +96,12 @@ pipeline {
                     sh label: "Pull AOB Images", script: "docker-app render -s REPO_NAME=advantageonlineshopping admpresales/${IMAGE_NAME}.dockerapp:${TAG}-dev | docker-compose -p aob -f - pull"
                     sh label: 'Add Admpresales Tags', script: '''
                         IMAGES=`nimbusapp aob -s REPO_NAME=advantageonlineshopping render |  grep '^[[:space:]]*image' |  sed 's/image://' | sort`
-                        IFS=' ' read -a array <<< "$IMAGES"
+                        IFS=' ' read -a array <<< $IMAGES
                         for i in "${array[@]}"
                         do
                             echo "$i"
                         done
-
+                        echo "End Array"
                     '''
                 }
             }
