@@ -100,6 +100,7 @@ pipeline {
                         for i in "${array[@]}"
                         do
                             $newimage = `echo $i | sed 's/advantageonlineshopping/admpresales/'`
+                            echo $newimage
                             docker tag $i $newimage
                         done
 
