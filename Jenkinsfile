@@ -99,8 +99,7 @@ pipeline {
                         IFS=' ' read -a array <<< $IMAGES
                         for i in "${array[@]}"
                         do
-                            $newimage = `echo $i | sed 's/advantageonlineshopping/admpresales/'`
-                            echo $newimage
+                            newimage = `echo $i | sed 's/advantageonlineshopping/admpresales/'`
                             docker tag $i $newimage
                         done
 
