@@ -21,7 +21,7 @@ targets:
 version: '3.5'
 services:
   db-postgres:
-    image: 'advantageonlineshopping/aob-postgresql-db:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-postgresql-db:${AOB_TAG}'
     container_name: aob-db-postgres
     environment:
       - POSTGRES_USER=postgres
@@ -55,7 +55,7 @@ services:
       - '5432:5432'
 
   aob-config:
-    image: 'advantageonlineshopping/aob-config-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-config-service:${AOB_TAG}'
     container_name: aob-config
     ports:
       - '8888:8888'
@@ -89,7 +89,7 @@ services:
       - db-postgres
 
   aob-discovery:
-    image: 'advantageonlineshopping/aob-eureka-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-eureka-service:${AOB_TAG}'
     container_name: aob-discovery
     ports:
       - '8761:8761'
@@ -123,7 +123,7 @@ services:
       - POPULATE_STOCKS_DB
 
   aob-gateway:
-    image: 'advantageonlineshopping/aob-gateway-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-gateway-service:${AOB_TAG}'
     container_name: aob-gateway
     depends_on:
       - aob-discovery
@@ -158,7 +158,7 @@ services:
       - POPULATE_STOCKS_DB
 
   user-service:
-    image: 'advantageonlineshopping/aob-user-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-user-service:${AOB_TAG}'
     container_name: aob-user-service
     depends_on:
       - aob-discovery
@@ -190,7 +190,7 @@ services:
       - POPULATE_STOCKS_DB
 
   bank-account-service:
-    image: 'advantageonlineshopping/aob-bank-account-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-bank-account-service:${AOB_TAG}'
     container_name: aob-bank-account-service
     depends_on:
       - aob-discovery
@@ -223,7 +223,7 @@ services:
       - POPULATE_STOCKS_DB
 
   bank-card-service:
-    image: 'advantageonlineshopping/aob-bank-cards-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-bank-cards-service:${AOB_TAG}'
     container_name: aob-bank-cards-service
     depends_on:
       - aob-discovery
@@ -255,7 +255,7 @@ services:
       - POPULATE_STOCKS_DB
 
   forecast-service:
-    image: 'advantageonlineshopping/aob-forecast-service:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-forecast-service:${AOB_TAG}'
     container_name: aob-forecast-service
     depends_on:
       - aob-discovery
@@ -287,7 +287,7 @@ services:
       - POPULATE_STOCKS_DB
 
   # loan-calc-service:
-  #   image: 'advantageonlineshopping/aob-loan-calc-service:${AOB_TAG}'
+  #   image: '${REPO_NAME}/aob-loan-calc-service:${AOB_TAG}'
   #   container_name: aob-loan-calc-service
   #   ports:
   #     - '34568-34570:34568-34570'
@@ -296,7 +296,7 @@ services:
   #     - discovery
 
   webapp:
-    image: 'advantageonlineshopping/aob-web-app:${AOB_TAG}'
+    image: '${REPO_NAME}/aob-web-app:${AOB_TAG}'
     container_name: aob-web-app
     expose:
       - '80'
@@ -330,7 +330,7 @@ services:
       - POPULATE_STOCKS_DB
 
   mysql:
-    image: advantageonlineshopping/aob-mysql-db:${AOB_TAG}_root_fix
+    image: ${REPO_NAME}/aob-mysql-db:${AOB_TAG}_root_fix
     container_name: aob-mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: 'no'
@@ -343,7 +343,7 @@ services:
 
 
   currency-service-api:
-    image: advantageonlineshopping/aob-currencies-service:${AOB_TAG}
+    image: ${REPO_NAME}/aob-currencies-service:${AOB_TAG}
     container_name: aob-currency-service-api
     depends_on:
       - mysql
@@ -380,7 +380,7 @@ services:
       - POPULATE_STOCKS_DB
 
   management-console-api:
-    image: advantageonlineshopping/aob-management-console-api:${AOB_TAG}
+    image: ${REPO_NAME}/aob-management-console-api:${AOB_TAG}
     container_name: aob-management-console-api
     depends_on:
       - mysql
@@ -418,14 +418,14 @@ services:
       - POPULATE_STOCKS_DB
 
   management-console-app:
-    image: advantageonlineshopping/aob-management-console-app:${AOB_TAG}
+    image: ${REPO_NAME}/aob-management-console-app:${AOB_TAG}
     container_name: aob-management-console-app
     expose:
       - '80'
     ports:
       - 8281:80
   stocks-trading-service:
-    image: advantageonlineshopping/aob-stocks-trading-service:${AOB_TAG}
+    image: ${REPO_NAME}/aob-stocks-trading-service:${AOB_TAG}
     container_name: aob-stocks-trading-service
     expose:
       - '3002'
@@ -499,3 +499,4 @@ FULL_HISTORY_RATES_ENDPOINT: https://www.ecb.europa.eu/stats/eurofxref/eurofxref
 JWT_SECRET: advantageusersjwtsecret
 PROD_MODE: false
 POPULATE_STOCKS_DB: false
+REPO_NAME: admpresales

@@ -93,7 +93,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-advantageonlineshoppingapp', passwordVariable: 'HUB_PASS', usernameVariable: 'HUB_USER')]) {
                     sh label: "Docker Login", script: 'docker login --username "$HUB_USER" --password-stdin <<< $HUB_PASS'
-                    sh label: "Pull AOB Images", script: "docker-app render admpresales/${IMAGE_NAME}.dockerapp:${TAG}-dev | docker-compose -p aob -f - pull"
+                    sh label: "Pull AOB Images", script: "docker-app render -s REPO_NAME=advantageonlineshopping admpresales/${IMAGE_NAME}.dockerapp:${TAG}-dev | docker-compose -p aob -f - pull"
                 }
             }
         }
