@@ -54,6 +54,9 @@ services:
       - POPULATE_STOCKS_DB
     ports:
       - '5432:5432'
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -91,6 +94,9 @@ services:
       - POPULATE_STOCKS_DB
     depends_on:
       - db-postgres
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -128,6 +134,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -166,6 +175,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -201,6 +213,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -237,6 +252,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -272,6 +290,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -307,6 +328,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -318,8 +342,11 @@ services:
   #     - '23:34571'
   #   depends_on:
   #     - discovery
-    networks:
-        demo-net:
+  #  extra_hosts:
+  #      - "nimbusserver.aos.com:172.50.0.1"
+  #      - "nimbusserver:172.50.0.1"
+  #  networks:
+  #      demo-net:
 
   webapp:
     build: .
@@ -355,6 +382,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -369,6 +399,9 @@ services:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -454,6 +487,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -465,6 +501,9 @@ services:
       - '80'
     ports:
       - 8281:80
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
@@ -514,6 +553,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
