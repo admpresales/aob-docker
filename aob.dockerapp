@@ -410,6 +410,9 @@ services:
       - JWT_SECRET
       - PROD_MODE
       - POPULATE_STOCKS_DB
+    extra_hosts:
+        - "nimbusserver.aos.com:172.50.0.1"
+        - "nimbusserver:172.50.0.1"
     networks:
         demo-net:
 
