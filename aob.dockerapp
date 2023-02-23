@@ -522,7 +522,7 @@ services:
       - TYPEORM_DATABASE=stocks_trading_service
       - TYPEORM_USERNAME=postgres
       - TYPEORM_PASSWORD=postgres
-      - TYPEORM_PORT=5433
+      - TYPEORM_PORT=5432
       - TYPEORM_LOGGING=true
       - TYPEORM_SYNCHRONIZE=true
       - TYPEORM_ENTITIES=./dist/src/modules/**/*.entity.js
