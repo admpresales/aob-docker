@@ -132,16 +132,6 @@ pipeline {
                     sh label: "Updating permissions on update script", script: "chmod +x push/update-dockerapp-metadata.sh"
                     sh label: "Updating README for Dockerapp", script: "push/update-dockerapp-metadata.sh \$HUB_USER \$HUB_PASS \${IMAGE}.dockerapp $TAG"
 
-
-                    //Push AOS (QA)
-                    sh label: "Strip Build Context For QA for Running", script: "sed -i -e '/build: ./d' ${IMAGE_NAME}-qa.dockerapp"
-                    sh label: "Set Docker App Version for QA", script: "sed -i -e \"s,<version>,${TAG},g\" ${IMAGE_NAME}-qa.dockerapp"
-                    sh label: "Set Tag for QA", script: "sed -i -e \"s,<tag>,${TAG},g\" ${IMAGE_NAME}-qa.dockerapp"
-                    sh label: "Validate Docker App File for QA", script: "docker-app validate ${IMAGE_NAME}-qa.dockerapp"
-                    sh label: "Push Docker App Production File for QA", script: "docker-app push ${IMAGE_NAME}-qa.dockerapp"
-                    sh label: "Cache Docker App via Render for QA", script: "nimbusapp ${IMAGE}-qa:${TAG} render"
-                    sh label: "Updating README for Dockerapp for QA", script: "push/update-dockerapp-metadata.sh \$HUB_USER \$HUB_PASS \${IMAGE}-qa.dockerapp $TAG"
-
                 }
             }
         }
@@ -169,7 +159,7 @@ pipeline {
             }
             steps {
                 office365ConnectorSend(
-                        message: "Advantage Online Shopping ${TAG} has been released - <a href=https://hub.docker.com/repository/docker/admpresales/${IMAGE_NAME}.dockerapp>Docker Hub</a>",
+                        message: "Advantage Online Banking ${TAG} has been released - <a href=https://hub.docker.com/repository/docker/admpresales/${IMAGE_NAME}.dockerapp>Docker Hub</a>",
                         webhookUrl: "${env.MS_URL_RELEASE}"
                 )
             }
