@@ -389,6 +389,7 @@ services:
         demo-net:
 
   mysql:
+    build: .
     image: ${REPO_NAME}/aob-mysql-db:${AOB_TAG}_root_fix
     container_name: aob-mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
