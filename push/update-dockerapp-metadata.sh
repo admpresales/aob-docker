@@ -24,3 +24,12 @@ RETURNCODE=$(jq -n --arg msg "$(<${FILE}.md)" \
 if [ "$RETURNCODE" != "200" ]; then
     return 1
 fi
+
+echo "Deleting Development Tag"
+RETURNCODE=$(curl -s -o /dev/null -L -w "%{http_code}" \
+           https://hub.docker.com/v2/repositories/${IMAGE}/tags/${TAG}-dev/ \
+           -i -X DELETE \
+           -H "Content-Type: application/json" \
+           -H "Authorization: JWT ${TOKEN}")
+
+echo $RETURNCODE
