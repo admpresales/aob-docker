@@ -33,7 +33,7 @@ URL: ``` http://nimbusserver.aos.com:8280 ```
 
 Username: ```admin```
 
-Password: ```adm1n```
+Password: ```demo```
 
 ***
 #### Adjusting Parameters at Run Time
